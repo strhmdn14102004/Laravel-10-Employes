@@ -40,24 +40,28 @@ class EmployeeController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         
-        $photoPath = null;
-        if ($request->hasFile('photo')) {
-            $photoPath = $this->uploadToGoogleDrive($request->file('photo'));
+        try {
+            $photoPath = null;
+            if ($request->hasFile('photo')) {
+                $photoPath = $this->uploadToGoogleDrive($request->file('photo'));
+            }
+            
+            $employee = Employee::create([
+                'nama' => $validated['nama'],
+                'nik' => $validated['nik'],
+                'alamat' => $validated['alamat'],
+                'provinsi' => $validated['provinsi'],
+                'kabupaten' => $validated['kabupaten'],
+                'kecamatan' => $validated['kecamatan'],
+                'kelurahan' => $validated['kelurahan'],
+                'photo_path' => $photoPath,
+                'user_id' => Auth::id(),
+            ]);
+            
+            return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['error' => 'Failed to create employee: '.$e->getMessage()]);
         }
-        
-        Employee::create([
-            'nama' => $validated['nama'],
-            'nik' => $validated['nik'],
-            'alamat' => $validated['alamat'],
-            'provinsi' => $validated['provinsi'],
-            'kabupaten' => $validated['kabupaten'],
-            'kecamatan' => $validated['kecamatan'],
-            'kelurahan' => $validated['kelurahan'],
-            'photo_path' => $photoPath,
-            'user_id' => Auth::id(),
-        ]);
-        
-        return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
     }
     
     public function show(Employee $employee)
@@ -142,16 +146,19 @@ class EmployeeController extends Controller
     }
     
     private function uploadToGoogleDrive($file)
-    {
-        // Implementasi upload ke Google Drive
-        // Lihat bagian setup Google Drive di bawah
+{
+    try {
         $fileName = time().'_'.$file->getClientOriginalName();
         $filePath = 'employee-photos/'.$fileName;
         
         \Storage::disk('google')->put($filePath, file_get_contents($file));
         
         return $filePath;
+    } catch (\Exception $e) {
+        \Log::error('Google Drive upload failed: '.$e->getMessage());
+        return null;
     }
+}
     
     private function deleteFromGoogleDrive($filePath)
     {

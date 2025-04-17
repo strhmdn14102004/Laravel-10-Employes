@@ -15,25 +15,25 @@
                         <div class="grid grid-cols-1 gap-6 mt-4">
                             <!-- Nama -->
                             <div>
-                                <x-label for="nama" :value="__('Nama')" />
-                                <x-input id="nama" class="block mt-1 w-full" type="text" name="nama" required />
+                                <label for="nama" class="block font-medium text-sm text-gray-700">Nama</label>
+                                <input id="nama" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" name="nama" required />
                             </div>
 
                             <!-- NIK -->
                             <div>
-                                <x-label for="nik" :value="__('NIK')" />
-                                <x-input id="nik" class="block mt-1 w-full" type="text" name="nik" required />
+                                <label for="nik" class="block font-medium text-sm text-gray-700">NIK</label>
+                                <input id="nik" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" name="nik" required />
                             </div>
 
                             <!-- Alamat -->
                             <div>
-                                <x-label for="alamat" :value="__('Alamat')" />
+                                <label for="alamat" class="block font-medium text-sm text-gray-700">Alamat</label>
                                 <textarea id="alamat" name="alamat" rows="3" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required></textarea>
                             </div>
 
                             <!-- Provinsi -->
                             <div>
-                                <x-label for="provinsi" :value="__('Provinsi')" />
+                                <label for="provinsi" class="block font-medium text-sm text-gray-700">Provinsi</label>
                                 <select id="provinsi" name="provinsi" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
                                     <option value="">Pilih Provinsi</option>
                                     @foreach ($provinces as $province)
@@ -44,7 +44,7 @@
 
                             <!-- Kabupaten/Kota -->
                             <div>
-                                <x-label for="kabupaten" :value="__('Kabupaten/Kota')" />
+                                <label for="kabupaten" class="block font-medium text-sm text-gray-700">Kabupaten/Kota</label>
                                 <select id="kabupaten" name="kabupaten" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required disabled>
                                     <option value="">Pilih Kabupaten/Kota</option>
                                 </select>
@@ -52,7 +52,7 @@
 
                             <!-- Kecamatan -->
                             <div>
-                                <x-label for="kecamatan" :value="__('Kecamatan')" />
+                                <label for="kecamatan" class="block font-medium text-sm text-gray-700">Kecamatan</label>
                                 <select id="kecamatan" name="kecamatan" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required disabled>
                                     <option value="">Pilih Kecamatan</option>
                                 </select>
@@ -60,7 +60,7 @@
 
                             <!-- Kelurahan -->
                             <div>
-                                <x-label for="kelurahan" :value="__('Kelurahan')" />
+                                <label for="kelurahan" class="block font-medium text-sm text-gray-700">Kelurahan</label>
                                 <select id="kelurahan" name="kelurahan" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required disabled>
                                     <option value="">Pilih Kelurahan</option>
                                 </select>
@@ -68,15 +68,15 @@
 
                             <!-- Photo -->
                             <div>
-                                <x-label for="photo" :value="__('Foto')" />
-                                <x-input id="photo" class="block mt-1 w-full" type="file" name="photo" />
+                                <label for="photo" class="block font-medium text-sm text-gray-700">Foto</label>
+                                <input id="photo" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="file" name="photo" />
                             </div>
                         </div>
 
                         <div class="flex justify-end mt-6">
-                            <x-button>
+                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition">
                                 {{ __('Simpan') }}
-                            </x-button>
+                            </button>
                         </div>
                     </form>
                 </div>
